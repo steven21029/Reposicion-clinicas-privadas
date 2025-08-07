@@ -1,0 +1,27 @@
+// 📁 mixins.less
+.border-radius(@radius) {
+  border-radius: @radius;
+}
+
+.transition-all() {
+  transition: @transition;
+}
+
+.flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-style(@bg: @white, @color: @black) {
+  display: block;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: @color;
+  text-decoration: none;
+  border: 1px solid @color;
+  .transition-all();
+  .border-radius(@radius-rounded);
+  background-color: @bg;
+}

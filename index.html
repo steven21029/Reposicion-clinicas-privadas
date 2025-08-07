@@ -1,13 +1,46 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="less/style.less" />
   </head>
+
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    {{>header}}
+    <main>{{>hero}} {{>about}}{{>location}}
+      {{>testimonio}}
+    </main>
+    {{>footer}}
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelectorAll(".carousel-slide");
+        const next = document.querySelector(".carousel-next");
+        const prev = document.querySelector(".carousel-prev");
+        let index = 0;
+
+        function showSlide(i) {
+          slides.forEach((slide, idx) => {
+            slide.classList.toggle("active", idx === i);
+          });
+        }
+
+        next.addEventListener("click", () => {
+          index = (index + 1) % slides.length;
+          showSlide(index);
+        });
+
+        prev.addEventListener("click", () => {
+          index = (index - 1 + slides.length) % slides.length;
+          showSlide(index);
+        });
+
+        setInterval(() => {
+          index = (index + 1) % slides.length;
+          showSlide(index);
+        }, 5000);
+      });
+    </script>
   </body>
 </html>
